@@ -1,0 +1,1 @@
+[{"uid":"7f68d14e43e90b9e","name":"Teste: Abertura do Google","time":{"start":1744224050009,"stop":1744224051254,"duration":1245},"status":"passed","severity":"normal"},{"uid":"44e60fec3d341b86","name":"Teste: Requisição GET JSONPlaceholder","time":{"start":1744224049912,"stop":1744224050007,"duration":95},"status":"passed","severity":"normal"}]
