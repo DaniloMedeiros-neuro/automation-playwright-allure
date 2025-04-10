@@ -1,0 +1,32 @@
+/* Cores Neurotech para o menu lateral do Allure */
+.side-nav__brand-text {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.side-nav {
+  background: #001E44 !important;
+}
+
+.side-nav__link {
+  color: #ffffff !important;
+}
+
+.side-nav__head {
+  border-bottom: 1px solid #ffffff !important;
+}
+
+.side-nav__collapse_active, .side-nav__link_active {
+  background: #003366 !important;
+  border-right: 4px solid #0071ce !important;
+}
+
+.side-nav__collapse, .side-nav__link {
+  color: #ffffff !important;
+}
+
+.button_inverse {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
