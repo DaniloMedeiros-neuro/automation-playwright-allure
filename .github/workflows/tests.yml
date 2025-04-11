@@ -19,22 +19,20 @@ jobs:
       run: |
         pip install -r requirements.txt
         python -m playwright install
+        npm install -g allure-commandline --save-dev
 
     - name: Run tests with Allure
       run: |
-        pytest
+        pytest --alluredir=allure-results
 
     - name: Generate Allure Report
-      uses: simple-elf/allure-report-action@v1.7
-      with:
-        allure_results: allure-results
-        allure_report: allure-report
-        keep_reports: true
+      run: |
+        allure generate allure-results -o allure-report --clean
 
     - name: Apply custom styles to Allure Report
       run: |
-        sudo cp allure-custom/styles.css allure-report/custom.css
-        sudo sed -i '/<head>/a <link rel="stylesheet" href="custom.css">' allure-report/index.html
+        cp allure-custom/styles.css allure-report/custom.css
+        sed -i '/<head>/a <link rel="stylesheet" href="custom.css">' allure-report/index.html
 
     - name: Deploy Allure Report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
