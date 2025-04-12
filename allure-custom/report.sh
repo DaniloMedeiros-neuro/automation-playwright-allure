@@ -13,7 +13,7 @@ logo_target_path="$logo_target_folder/neuro-logo.svg"
 favicon_target_path="$output_folder/favicon.ico"
 
 # Gera o relatório
-allure generate "$results_folder" --clean -o "$output_folder"
+allure generate "$results_folder" --clean --lang br -o "$output_folder"
 
 # Verifica se o relatório foi gerado
 if [ ! -f "$output_folder/index.html" ]; then
