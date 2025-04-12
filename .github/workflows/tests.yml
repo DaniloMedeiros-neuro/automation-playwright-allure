@@ -42,6 +42,12 @@ jobs:
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />\
         <meta http-equiv="Pragma" content="no-cache" />\
         <meta http-equiv="Expires" content="0" />' allure-report/index.html
+        
+
+    - name: Forçar idioma pt-BR no Allure Report
+      run:
+        sed -i '/<head>/a \
+        <script>localStorage.setItem("allure-lang", "pt-BR");</script>' allure-report/index.html
 
     - name: Apply custom styles and logo via CSS
       run: |
