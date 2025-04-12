@@ -1,1 +1,1 @@
-{"reportName":"Neuro Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":2,"unknown":0,"total":2},"time":{"start":1744453679638,"stop":1744453680968,"duration":1330,"minDuration":129,"maxDuration":1199,"sumDuration":1328}}
+{"reportName":"Neuro Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":2,"unknown":0,"total":2},"time":{"start":1744456014805,"stop":1744456021432,"duration":6627,"minDuration":145,"maxDuration":6474,"sumDuration":6619}}
