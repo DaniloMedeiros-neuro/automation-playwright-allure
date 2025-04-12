@@ -1,3 +1,3 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","1258","Teste: Abertura do Google","tests","Sat Apr 12 15:37:05 UTC 2025","passed","Sat Apr 12 15:37:06 UTC 2025","","test_ui","",""
-"","49","Teste: Requisição GET JSONPlaceholder","tests","Sat Apr 12 15:37:05 UTC 2025","passed","Sat Apr 12 15:37:05 UTC 2025","","test_api","",""
+"","45","Teste: Requisição GET JSONPlaceholder","tests","Sat Apr 12 17:56:31 UTC 2025","passed","Sat Apr 12 17:56:31 UTC 2025","","test_api","",""
+"","1185","Teste: Abertura do Google","tests","Sat Apr 12 17:56:31 UTC 2025","passed","Sat Apr 12 17:56:32 UTC 2025","","test_ui","",""
