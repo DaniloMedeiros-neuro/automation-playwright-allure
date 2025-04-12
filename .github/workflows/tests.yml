@@ -36,33 +36,15 @@ jobs:
           sed -i 's/Allure Report/Neuro Report/g' allure-report/widgets/summary.json
         fi
 
-    - name: Evitar cache no navegador
-      run: |
-        sed -i '/<head>/a \
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />\
-        <meta http-equiv="Pragma" content="no-cache" />\
-        <meta http-equiv="Expires" content="0" />' allure-report/index.html
-        
-
-    - name: Apply custom styles and logo via CSS
+    - name: Apply custom styles
       run: |
         cp allure-custom/styles.css allure-report/custom.css
-        echo "" >> allure-report/custom.css
-        echo ".side-nav__brand::before {" >> allure-report/custom.css
-        echo "  content: '';" >> allure-report/custom.css
-        echo "  display: block;" >> allure-report/custom.css
-        echo "  width: 160px;" >> allure-report/custom.css
-        echo "  height: 50px;" >> allure-report/custom.css
-        echo "  background: url('plugin/custom-logo/logo.svg') no-repeat center;" >> allure-report/custom.css
-        echo "  background-size: contain;" >> allure-report/custom.css
-        echo "  margin: 0 auto 5px auto;" >> allure-report/custom.css
-        echo "}" >> allure-report/custom.css
         sed -i '/styles.css/a <link rel="stylesheet" type="text/css" href="custom.css">' allure-report/index.html
 
     - name: Copy logo and favicon
       run: |
         mkdir -p allure-report/plugin/custom-logo
-        cp allure-custom/neuro-logo.svg allure-report/plugin/custom-logo/logo.svg
+        cp allure-custom/neuro-logo.svg allure-report/plugin/custom-logo/neuro-logo.svg
         cp allure-custom/favicon.ico allure-report/favicon.ico
         if grep -q '<link rel="icon"' allure-report/index.html; then
           sed -i 's|<link rel="icon[^>]*>|<link rel="icon" type="image/x-icon" href="favicon.ico">|' allure-report/index.html
