@@ -21,7 +21,7 @@ jobs:
         python -m playwright install
         npm install -g allure-commandline
 
-    - name: Run tests with Allure
+    - name: Run tests and collect Allure results
       run: |
         pytest --alluredir=allure-results
 
@@ -29,19 +29,29 @@ jobs:
       run: |
         allure generate allure-results -o allure-report --clean
 
-    - name: Replace report title and summary
+    - name: Update title and summary
       run: |
         sed -i 's|<title>Allure Report</title>|<title>Neuro Report</title>|' allure-report/index.html
         if [ -f allure-report/widgets/summary.json ]; then
           sed -i 's/Allure Report/Neuro Report/g' allure-report/widgets/summary.json
         fi
 
-    - name: Apply custom styles to Allure Report
+    - name: Apply custom styles and logo via CSS
       run: |
         cp allure-custom/styles.css allure-report/custom.css
-        sed -i '/<link rel="stylesheet" type="text\/css" href="styles.css">/a <link rel="stylesheet" type="text/css" href="custom.css">' allure-report/index.html
+        echo "" >> allure-report/custom.css
+        echo ".side-nav__brand::before {" >> allure-report/custom.css
+        echo "  content: '';" >> allure-report/custom.css
+        echo "  display: block;" >> allure-report/custom.css
+        echo "  width: 160px;" >> allure-report/custom.css
+        echo "  height: 50px;" >> allure-report/custom.css
+        echo "  background: url('plugin/custom-logo/logo.svg') no-repeat center;" >> allure-report/custom.css
+        echo "  background-size: contain;" >> allure-report/custom.css
+        echo "  margin: 0 auto 5px auto;" >> allure-report/custom.css
+        echo "}" >> allure-report/custom.css
+        sed -i '/styles.css/a <link rel="stylesheet" type="text/css" href="custom.css">' allure-report/index.html
 
-    - name: Apply logo and favicon to Allure Report
+    - name: Copy logo and favicon
       run: |
         mkdir -p allure-report/plugin/custom-logo
         cp allure-custom/neuro-logo.svg allure-report/plugin/custom-logo/logo.svg
