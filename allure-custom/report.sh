@@ -9,24 +9,14 @@ logo_source_path="${project_root}/allure-custom/neuro-logo.svg"
 favicon_source_path="${project_root}/allure-custom/favicon.ico"
 
 logo_target_folder="$output_folder/plugin/custom-logo"
-logo_target_path="$logo_target_folder/neuro-logo.svg"
 favicon_target_path="$output_folder/favicon.ico"
 
-# Gera o relatório
+# Gera o relatório com idioma em português
 allure generate "$results_folder" --clean --lang br -o "$output_folder"
 
 # Verifica se o relatório foi gerado
 if [ ! -f "$output_folder/index.html" ]; then
   exit 1
-fi
-
-# Altera o título da aba do navegador
-sed -i '' 's|<title>Allure Report</title>|<title>Neuro Report</title>|' "$output_folder/index.html"
-
-# Atualiza texto do sumário (ex: breadcrumbs, titles internos)
-summary_file="$output_folder/widgets/summary.json"
-if [ -f "$summary_file" ]; then
-  sed -i '' 's/Allure Report/Neuro Report/g' "$summary_file"
 fi
 
 # Aplica CSS customizado
@@ -36,14 +26,22 @@ if [ -f "$custom_styles_path" ]; then
 <link rel="stylesheet" type="text/css" href="custom.css">' "$output_folder/index.html"
 fi
 
-# Copia logo customizada para a lateral do menu
-if [ -f "$logo_source_path" ]; then
-  mkdir -p "$logo_target_folder"
-  cp "$logo_source_path" "$logo_target_path"
-  cp "$logo_source_path" "$output_folder/plugin/custom-logo/logo.svg"
+# Altera o título da aba do navegador
+sed -i '' 's|<title>Allure Report</title>|<title>Neuro Report</title>|' "$output_folder/index.html"
+
+# Atualiza texto do sumário
+summary_file="$output_folder/widgets/summary.json"
+if [ -f "$summary_file" ]; then
+  sed -i '' 's/Allure Report/Neuro Report/g' "$summary_file"
 fi
 
-# Substitui ou insere o favicon (ícone da aba do navegador)
+# Copia logo customizada
+if [ -f "$logo_source_path" ]; then
+  mkdir -p "$logo_target_folder"
+  cp "$logo_source_path" "$logo_target_folder/neuro-logo.svg"
+fi
+
+# Substitui ou insere o favicon
 if [ -f "$favicon_source_path" ]; then
   cp "$favicon_source_path" "$favicon_target_path"
   if grep -q '<link rel="icon"' "$output_folder/index.html"; then
